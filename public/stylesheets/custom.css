@@ -1,5 +1,5 @@
 .container {
-	width: 710px;
+	width: 950px;
 }
 
 body {
@@ -98,7 +98,7 @@ a.signup_button {
 footer {
 	text-align: center;
 	margin-top: 10px;
-	width: 710px;
+	width: 950px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -122,6 +122,12 @@ td.sidebar {
 	vertical-align: top;
 	background: #ffc;
 }
+
+td.sidebar_panel {
+	width: 30%;
+	vertical-align: top;
+}
+
 .profile img.gravatar {
 	border: 1px solid #999;
 	margin-bottom: -15px;
@@ -157,4 +163,8 @@ ul.users {
 
 .users li {
 	list-style: none;
+}
+
+.important {
+	font-weight: bold;
 }

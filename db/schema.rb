@@ -10,7 +10,45 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101212215450) do
+ActiveRecord::Schema.define(:version => 20101226210711) do
+
+  create_table "alternate_emails", :force => true do |t|
+    t.string   "email"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "alternate_emails", ["user_id"], :name => "index_alternate_emails_on_user_id"
+
+  create_table "contact_emails", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "contact_id"
+    t.string   "email"
+    t.integer  "total"
+    t.integer  "received_direct"
+    t.integer  "received_cc"
+    t.integer  "sent_direct"
+    t.integer  "sent_cc"
+    t.integer  "answered"
+    t.integer  "unread"
+    t.integer  "deleted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contact_emails", ["contact_id"], :name => "index_contact_emails_on_contact_id"
+  add_index "contact_emails", ["user_id"], :name => "index_contact_emails_on_user_id"
+
+  create_table "contacts", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.boolean  "important"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contacts", ["user_id"], :name => "index_contacts_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

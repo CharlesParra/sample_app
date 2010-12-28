@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20101212212724
+# Schema version: 20101226210711
 #
 # Table name: users
 #
@@ -9,9 +9,14 @@
 #  created_at         :datetime
 #  updated_at         :datetime
 #  encrypted_password :string(255)
+#  salt               :string(255)
 #
 
 class User < ActiveRecord::Base
+	has_many :alternate_emails
+	has_many :contacts
+	has_many :contact_emails
+
   attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation
   

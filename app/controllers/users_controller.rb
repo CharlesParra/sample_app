@@ -9,6 +9,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @contacts = @user.contacts.paginate(:page => params[:page])
+    @alternate_emails = @user.alternate_emails
     @title = @user.name
   end
 
