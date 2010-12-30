@@ -1,4 +1,5 @@
-<li>
-	<%= link_to user.name, user %>
-	<%= user.email %>
-</li>
+<tr>
+	<td><%= link_to user.name, user %></td>
+	<td><%= user.email %></td>
+	<td><%= user.contacts.count %></td>
+</tr>

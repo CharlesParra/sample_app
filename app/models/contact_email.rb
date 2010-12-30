@@ -24,5 +24,5 @@ class ContactEmail < ActiveRecord::Base
 	belongs_to :contact
 
 	attr_accessible :email, :total, :received_direct, :received_cc, :sent_direct, :sent_cc, :answered, :unread, :deleted
-
+	default_scope :order => 'contact_emails.email ASC'
 end

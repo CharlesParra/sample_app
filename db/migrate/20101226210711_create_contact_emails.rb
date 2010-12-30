@@ -3,7 +3,7 @@ class CreateContactEmails < ActiveRecord::Migration
     create_table :contact_emails do |t|
       t.integer :user_id
       t.integer :contact_id
-      t.string :email
+      t.string  :email
       t.integer :total
       t.integer :received_direct
       t.integer :received_cc

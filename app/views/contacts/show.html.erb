@@ -1,9 +1,5 @@
-<h1>
-<% if @contact.important %>
-Important 
-<% end %>
-Contact: <%= @contact.name %></h1>
-<span>Email Addresses: <%= @contact.contact_emails.map{ |ce| ce.email }.join(", ") %></span>
+<h1><% if @contact.important %>Important <% end %>Contact: <%= @contact.name %></h1>
+<span>Email Addresses: (<%= @contact.contact_emails.count %>) <%= @contact.contact_emails.map{ |ce| ce.email }.join(", ") %></span>
 
 <table>
 	<tr>
@@ -11,18 +7,14 @@ Contact: <%= @contact.name %></h1>
 		<th>Count</th>
 	</tr>
 
-<!-- Note for Charles, I am just using a shortcut here. You can use normal way to access the data if needed. eg: ce.total -->
-<% arr = [ :received_direct, :received_cc, :sent_direct, :sent_cc, :answered, :unread, :deleted ] %>
+<% arr = [ :received_direct, :received_cc, :sent_direct, :sent_cc, :total, :answered, :unread, :deleted ] %>
 <% arr.each do |attr| %>	
 	<tr>
-		<td><%= attr.to_s %></td>
-		<!-- Adding the statistic for all email address of this contact. The stats are stored on a per-email basis -->
-		<td><%= @contact_emails.inject(0) { |sum, ce| sum + ce.send(attr) } %></td>
+		<td><%= attr %></td>
+		<td><%= number_with_delimiter(@contact_emails.inject(0) { |sum, ce| sum + ce.send(attr) }) %></td>
 	</tr>
 <% end %>
-	<tr>
-		<td>Note: Stats are totaled across all of the email addresses for the contact</td>
-	</tr>
 </table>
-
+<div><%= link_to "More Details", :controller => "contact_emails", :action => "show", :id => @contact.id  %></div>
+<div>Note: Stats are totaled across all of the email addresses for the contact</div>
 <div>Back to all contacts for <%= link_to @user.name, contacts_path %></div>

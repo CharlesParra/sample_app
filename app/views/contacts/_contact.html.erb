@@ -1,7 +1,7 @@
 <tr>
-	<td class="contact">
-		<span class="name<%= " important" if contact.important %>"><%= contact.name %></span>
-	</td>
-	<td><%= contact.contact_emails.map{ |ce| ce.email }.join(", ") %></td>
+	<td><%= contact.id %></td>
+	<td class="contact"><span class="name<%= " important" if contact.important %>"><%= contact.name %></span></td>
+	<td>(<%= contact.contact_emails.count %>) <%= contact.contact_emails.map{ |ce| ce.email }.join(", ") %></td>
+	<td><%= number_with_delimiter(contact.contact_emails.inject(0) { |sum, ce| sum + ce.unread }) %></td>
 	<td><%= link_to "Details", :controller => "contacts", :action => "show", :id => contact.id  %></td>
 </tr>

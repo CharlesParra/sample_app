@@ -1,23 +1,25 @@
 <h1>All Contacts for <%= link_to @user.name, current_user %></h1>
-<%= link_to "Important Contacts", views_important_path %>
+<%= link_to "Important Contacts", views_important_path %> | <%= link_to "All Contact Emails", contact_emails_path %>
 <table>
 <% unless @contacts.empty? %>
 	<tr>
-		<td colspan="3">
+		<td colspan="5">
 			<%= page_entries_info @contacts %>
 			<%= will_paginate @contacts %>
 		</td>
 	</tr>
 <% end %>
 	<tr>
+		<td>ID</td>
 		<td>Name</td>
 		<td>Email Addresses</td>
+		<td>Unread</td>
 		<td></td>
 	</tr>
 <% unless @contacts.empty? %>
 	<%= render @contacts %>
 	<tr>
-		<td colspan="3">
+		<td colspan="5">
 			<%= will_paginate @contacts %>
 		</td>
 	</tr>

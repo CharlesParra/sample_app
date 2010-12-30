@@ -1,0 +1,38 @@
+<h1>All contact emails for <% if @contact.important %>(important contact) <% end %><%= @contact.name %></h1>
+<table>
+<% unless @contact_emails_list.empty? %>
+	<tr>
+		<td colspan="10">
+			<%= page_entries_info @contact_emails_list %>
+			<%= will_paginate @contact_emails_list %>
+		</td>
+	</tr>
+<% end %>
+	<tr>
+		<td>Contact Name</td>
+		<td>Email Address</td>
+		<td>Received Direct</td>
+		<td>Received CC</td>
+		<td>Sent Direct</td>
+		<td>Sent CC</td>
+		<td>Total</td>		
+		<td>Answered</td>
+		<td>Unread</td>
+		<td>Deleted</td>
+	</tr>
+<% unless @contact_emails_list.empty? %>
+	<%= render @contact_emails_list %>
+<% end %>
+	<tr>
+		<td colspan="2">Grand Totals:</td>
+<% arr = [ :received_direct, :received_cc, :sent_direct, :sent_cc, :total, :answered, :unread, :deleted ] %>
+<% arr.each do |attr| %>	
+		<td><%= number_with_delimiter(@contact_emails.inject(0) { |sum, ce| sum + ce.send(attr) }) %></td>
+
+<% end %>
+	</tr>
+</table>
+
+<div><%= link_to "Less Details", :controller => "contacts", :action => "show", :id => @contact.id  %></div>
+<div>Back to all contacts for <%= link_to @user.name, contacts_path %></div>
+

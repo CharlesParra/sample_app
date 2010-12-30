@@ -8,6 +8,13 @@
 			<%= page_entries_info @contacts %>
 			<%= will_paginate @contacts %>
 			<table class="contacts" summary="User contacts">
+				<tr>
+					<td>ID</td>
+					<td>Name</td>
+					<td>Email Addresses</td>
+					<td>Unread</td>
+					<td></td>
+				</tr>
 				<%= render @contacts %>
 			</table>
 			<%= will_paginate @contacts %>
@@ -25,6 +32,7 @@
 			<strong>Profile URL</strong> <%= link_to user_path(@user), @user %><br />
 			<strong>All Contacts</strong> <%= link_to contacts_path, contacts_path %><br />
 			<strong>Important Contacts</strong> <%= link_to views_important_path, views_important_path %>
+			<strong>All Contact Emails</strong> <%= link_to contact_emails_path, contact_emails_path %>
 		</td>
 	</tr>
 </table>

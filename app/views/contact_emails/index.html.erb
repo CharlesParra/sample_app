@@ -1,0 +1,41 @@
+<h1>All contact emails for <%= link_to @user.name, current_user %></h1>
+<%= link_to "All Contacts", contacts_path %> | <%= link_to "Important Contacts", views_important_path %>
+<table>
+<% unless @contact_emails_list.empty? %>
+	<tr>
+		<td colspan="10">
+			<%= page_entries_info @contact_emails_list %>
+			<%= will_paginate @contact_emails_list %>
+		</td>
+	</tr>
+<% end %>
+	<tr>
+		<td>Contact Name</td>
+		<td>Email Address</td>
+		<td>Received Direct</td>
+		<td>Received CC</td>
+		<td>Sent Direct</td>
+		<td>Sent CC</td>
+		<td>Total</td>		
+		<td>Answered</td>
+		<td>Unread</td>
+		<td>Deleted</td>
+	</tr>
+<% unless @contact_emails_list.empty? %>
+	<%= render @contact_emails_list %>
+
+	<% @contact_emails2.each do |ce| %>
+	<tr>
+		<td colspan="10">
+			<%= ce.name %>, <%= ce.id %> 
+			</td>
+		</tr>
+	<% end %>
+	<tr>
+		<td colspan="10">
+			<%= will_paginate @contact_emails_list %>
+		</td>
+	</tr>
+<% end %>
+</table>
+

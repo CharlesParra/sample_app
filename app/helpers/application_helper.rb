@@ -1,5 +1,5 @@
 module ApplicationHelper
-  
+
   #return a title on a per-page basis
   def title
     base_title = "Sample App"

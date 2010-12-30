@@ -15,7 +15,7 @@
 class User < ActiveRecord::Base
 	has_many :alternate_emails
 	has_many :contacts
-	has_many :contact_emails
+	has_many :contact_emails, :through => :contacts
 
   attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation

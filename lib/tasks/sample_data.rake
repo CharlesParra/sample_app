@@ -18,8 +18,8 @@ namespace :db do
                      :password_confirmation => "password")
       end
 
-      # then for the first 2 users
-      User.all(:limit => 2).each do |user|
+      # then for the first 5 users
+      User.all(:limit => 5).each do |user|
 
         # create up to 4 alternate email addresses per user
         rand(4).times do
@@ -32,24 +32,42 @@ namespace :db do
                                     :important => rand(2))
                                     
           # and create up to 4 email addresses per contact
+          received_direct = rand(1000)
+          received_cc = rand(1000)
+          sent_direct = rand(1000)
+          sent_cc = rand(1000)
+          answered = rand(1000)
+          unread = 0
+          deleted = rand(1000)
+          total = sent_direct + sent_cc + received_direct + received_cc
           uc.contact_emails.create(:email => Faker::Internet.email,
-                                   :received_direct => rand(1000),
-                                   :received_cc => rand(1000),
-                                   :sent_direct => rand(1000),
-                                   :sent_cc => rand(1000),
-                                   :answered => rand(1000),
-                                   :unread => rand(1000),
-                                   :deleted => rand(1000))
+                                   :received_direct => received_direct,
+                                   :received_cc => received_cc,
+                                   :sent_direct => sent_direct,
+                                   :sent_cc => sent_cc,
+                                   :answered => answered,
+                                   :unread => unread,
+                                   :deleted => deleted,
+                                   :total => total)
                                    
           rand(3).times do
+            received_direct = rand(1000)
+            received_cc = rand(1000)
+            sent_direct = rand(1000)
+            sent_cc = rand(1000)
+            answered = rand(1000)
+            unread = rand(10)
+            deleted = rand(1000)
+            total = sent_direct + sent_cc + received_direct + received_cc
             uc.contact_emails.create(:email => Faker::Internet.email,
-                                           :received_direct => rand(1000),
-                                           :received_cc => rand(1000),
-                                           :sent_direct => rand(1000),
-                                           :sent_cc => rand(1000),
-                                           :answered => rand(1000),
-                                           :unread => rand(1000),
-                                           :deleted => rand(1000))            
+                                     :received_direct => received_direct,
+                                     :received_cc => received_cc,
+                                     :sent_direct => sent_direct,
+                                     :sent_cc => sent_cc,
+                                     :answered => answered,
+                                     :unread => unread,
+                                     :deleted => deleted,
+                                     :total => total)
           end  
         end
       end

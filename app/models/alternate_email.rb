@@ -14,4 +14,5 @@ class AlternateEmail < ActiveRecord::Base
   belongs_to :user
 
   attr_accessible :email
+	default_scope :order => 'alternate_emails.email ASC'
 end
